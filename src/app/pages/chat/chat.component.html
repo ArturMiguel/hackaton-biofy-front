@@ -4,12 +4,23 @@
       <app-chat-message [type]="message.type" [message]="message.message"></app-chat-message>
     </div>
   </div>
+
   <div *ngIf="isSubmiting" class="writing-text">IA.GRO está digitando...</div>
+  <div *ngIf="isTranscriptingAudio" class="writing-text">IA.GRO está transcrevendo o áudio...</div>
+
   <div class="flex">
-    <input pInputText placeholder="Enviar mensagem" class="mr-3 w-full" [(ngModel)]="message" [disabled]="isSubmiting" (keyup.enter)="sendMessage()">
-    <button pButton [icon]="isSubmiting ? 'pi pi-spin pi-spinner' : 'pi pi-send'" class="p-button-outlined mr-3 button-primary" (click)="sendMessage()"></button>
-    <button pButton icon="pi pi-camera" class="p-button-outlined mr-3 button-primary"></button>
-    <button pButton icon="pi pi-microphone" class="button-primary-negative"></button>
+    <div *ngIf="isRecordingAudio" class="flex align-items-center w-full">
+      <div class="recording mx-2">.</div>
+      <span>Gravando áudio...</span>
+    </div>
+    <input pInputText placeholder="Enviar mensagem" class="mr-3 w-full" [(ngModel)]="message" [disabled]="isSubmiting" (keyup.enter)="sendMessage()" *ngIf="!isRecordingAudio">
+
+    <button pButton [icon]="isSubmiting ? 'pi pi-spin pi-spinner' : 'pi pi-send'" class="p-button-outlined mr-3 button-primary" (click)="sendMessage()" [disabled]="isSubmiting || isRecordingAudio || isTranscriptingAudio"></button>
+
+    <button pButton icon="pi pi-camera" class="p-button-outlined mr-3 button-primary" [disabled]="isSubmiting || isRecordingAudio || isTranscriptingAudio"></button>
+
+    <button pButton icon="pi pi-microphone" class="start-record-button" (click)="startAudioRecording()" *ngIf="!isRecordingAudio" [disabled]="isSubmiting || isTranscriptingAudio"></button>
+    <button pButton icon="pi pi-microphone" class="stop-record-button" (click)="stopAudioRecording()" *ngIf="isRecordingAudio" [disabled]="isSubmiting || isTranscriptingAudio"></button>
   </div>
 </div>
   

@@ -18,4 +18,14 @@ export class OpenaiService {
   sendMessage(message: string, thread: string) {
     return this.httpClient.post(`${environment.api}/v1/ia-models/texts`, { message, thread }).toPromise();
   }
+
+  uploadAudio(file: any, thread: string) {
+    const formData = new FormData();
+    formData.append("file", file);
+    return this.httpClient.post(`${environment.api}/v1/ia-models/audios`, formData, {
+      headers: {
+        thread: thread
+      }
+    }).toPromise();
+  }
 }

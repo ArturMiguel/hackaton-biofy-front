@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class ChatMessageComponent implements OnInit {
   @Input() type: string = "";
   @Input() message: string = "";
+  @Input() thread: string = "";
 
   constructor() { }
 
