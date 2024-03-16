@@ -38,7 +38,7 @@ export class ChatComponent implements OnInit {
 
       this.isSubmiting = true;
       
-      this.openService.sendMessage(this.message).then((response: any) => {
+      this.openService.sendMessage(this.message, this.thread).then((response: any) => {
         this.messageList.push(response.lastMessage);
         this.thread = response.thread;
         this.message = "";
