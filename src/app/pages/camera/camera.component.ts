@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { WebcamImage } from 'ngx-webcam';
 import { Observable, Subject } from 'rxjs';
+import { OpenaiService } from 'src/app/services/openai.service';
 
 @Component({
   selector: 'app-camera',
@@ -11,7 +12,7 @@ export class CameraComponent implements OnInit {
   private trigger: Subject<void> = new Subject<void>();
   public webcamImage: WebcamImage | null = null;
 
-  constructor() { }
+  constructor(private openaiService: OpenaiService) { }
 
   ngOnInit(): void {
   }
@@ -28,4 +29,7 @@ export class CameraComponent implements OnInit {
     return this.trigger.asObservable();
   }
 
+  processImage() {
+
+  }
 }

@@ -8,5 +8,5 @@
     <button pButton *ngIf="!webcamImage" (click)="takeAPicture()">Tirar Foto</button>
     <button pButton *ngIf="webcamImage"(click)="webcamImage = null">Tirar outra Foto</button>
   </div>
-  <button pButton label="Processar"></button>
+  <button pButton label="Processar" (click)="processImage()"></button>
 </div>
