@@ -4,17 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
     <div class="login-container">
+        <img class="logo" src="../../../assets/Mark.jpg">
         <h2>IA.GRO</h2>
         <form id="login-form">
             <input type="email" id="email" placeholder="E-mail"><div class="password-container">
               <input type="password" id="password" placeholder="Senha">
-              <button type="button" id="toggle-password">Show</button>
+              <button type="button" id="toggle-password" (click)="togglePassword()">
+                <i id="eye-icon" data-feather="eye"></i>
+              </button>
           </div>
 
-            <button type="submit">Entrar</button>
+            <button type="submit" class="entrar" (click)="login()">Entrar</button>
+            <button type="submit" class="esqueci">Esqueci minha senha</button>
+            <div class="divider"></div>
+            <button type="submit" class="google">
+              <div>
+                <img src="../../../assets/googleLogo.png">
+              </div>
+              Entrar com o google
+            </button>
         </form>
     </div>
 </body>
