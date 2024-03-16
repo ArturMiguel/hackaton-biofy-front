@@ -11,6 +11,7 @@ import { ChatComponent } from './pages/chat/chat.component';
 import { ChatMessageComponent } from './components/chat-message/chat-message.component';
 import { WebcamModule } from 'ngx-webcam';
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @NgModule({
   declarations: [
@@ -19,14 +20,15 @@ import { ButtonModule } from 'primeng/button';
     LoginComponent,
     CameraComponent,
     ChatComponent,
-    ChatMessageComponent
+    ChatMessageComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     WebcamModule,
-    ButtonModule
+    ButtonModule,
+    InputTextModule
   ],
   providers: [],
   bootstrap: [AppComponent]
