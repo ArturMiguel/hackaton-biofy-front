@@ -1,11 +1,15 @@
 <div class="chat-container">
-  <div *ngFor="let message of messageList">
-    <app-chat-message [type]="message.type" [message]="message.message"></app-chat-message>
+  <div id="chat-message-list" class="chat-message-list">
+    <div *ngFor="let message of messageList">
+      <app-chat-message [type]="message.type" [message]="message.message"></app-chat-message>
+    </div>
   </div>
+  <div *ngIf="isSubmiting" class="writing-text">IA.GRO está digitando...</div>
   <div class="flex">
-    <input pInputText placeholder="Enviar mensagem" class="mr-3 w-full">
-    <button pButton icon="pi pi-camera" class="p-button-outlined mr-3"></button>
-    <button pButton icon="pi pi-microphone"></button>
+    <input pInputText placeholder="Enviar mensagem" class="mr-3 w-full" [(ngModel)]="message" [disabled]="isSubmiting" (keyup.enter)="sendMessage()">
+    <button pButton [icon]="isSubmiting ? 'pi pi-spin pi-spinner' : 'pi pi-send'" class="p-button-outlined mr-3 button-primary" (click)="sendMessage()"></button>
+    <button pButton icon="pi pi-camera" class="p-button-outlined mr-3 button-primary"></button>
+    <button pButton icon="pi pi-microphone" class="button-primary-negative"></button>
   </div>
 </div>
   

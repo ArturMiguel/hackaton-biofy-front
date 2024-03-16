@@ -1,3 +1,39 @@
+@import "../../../styles/colors";
+
 .chat-container {
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  justify-content: space-between;
+
+  ::ng-deep {
+    .p-inputtext {
+      border-color: $primary-color !important;
+      box-shadow: none !important
+    }
+  }
+}
+
+.chat-message-list {
+  height: 75vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.button-primary {
+  border-color: $primary-color !important;
+  color: $primary-color !important
+}
+
+.button-primary-negative {
+  background: $primary-color !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  border-color: $primary-color !important;
+}
+
+.writing-text {
+  opacity: 0.8;
+  font-style: italic;
 }
