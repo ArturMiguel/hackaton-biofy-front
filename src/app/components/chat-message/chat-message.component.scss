@@ -1,0 +1,26 @@
+.chat-message-area {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5rem;
+  width: 100%;
+  font-weight: 400;
+}
+
+.chat-message {
+  padding: 0.5rem;
+  background: rgba(121, 157, 88, 1);
+  color: rgba(255, 255, 255, 1);
+  font-size: 0.875rem;
+  border-radius: 10px;
+  line-height: 1.3125;
+  max-width: 50%;
+  justify-self: right;
+  margin-bottom: 1rem
+}
+
+.chat-message-bot {
+  @extend .chat-message;
+  background: rgba(121, 157, 88, 0.5);
+  color: rgba(40, 40, 40, 1);
+  justify-self: left;
+}

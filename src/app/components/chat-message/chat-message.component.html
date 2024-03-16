@@ -1,0 +1,5 @@
+<div class="chat-message-area">
+  <div [ngClass]="{ 'USER': 'chat-message', 'BOT': 'chat-message-bot' }[type]">
+    <span>{{ message }}</span>
+  </div>
+</div>
