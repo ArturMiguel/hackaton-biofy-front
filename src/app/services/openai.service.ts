@@ -11,8 +11,8 @@ export class OpenaiService {
     private httpClient: HttpClient
   ) { }
 
-  processImage(base64Image: string) {
-    return this.httpClient.post(`${environment.api}/v1/ia-models/images`, { image: base64Image }).toPromise();
+  processImage(formData: FormData) {
+    return this.httpClient.post(`${environment.api}/v1/ia-models/images`, formData).toPromise();
   }
 
   sendMessage(message: string, thread: string) {

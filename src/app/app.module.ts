@@ -11,6 +11,8 @@ import { ChatMessageComponent } from './components/chat-message/chat-message.com
 import { WebcamModule } from 'ngx-webcam';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -28,6 +30,8 @@ import { FormsModule } from '@angular/forms';
     WebcamModule,
     ButtonModule,
     InputTextModule,
+    FileUploadModule,
+    ProgressSpinnerModule,
     FormsModule
   ],
   providers: [],
