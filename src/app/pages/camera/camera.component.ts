@@ -29,7 +29,8 @@ export class CameraComponent implements OnInit {
     return this.trigger.asObservable();
   }
 
-  processImage() {
-
+  async processImage() {
+    const response = await this.openaiService.processImage(this.webcamImage!.imageAsDataUrl);
+    alert(response)
   }
 }
