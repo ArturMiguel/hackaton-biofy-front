@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CameraComponent } from './pages/camera/camera.component';
+import { WebcamModule } from 'ngx-webcam';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { CameraComponent } from './pages/camera/camera.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    WebcamModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
