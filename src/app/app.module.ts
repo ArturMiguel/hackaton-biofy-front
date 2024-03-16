@@ -8,6 +8,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { CameraComponent } from './pages/camera/camera.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { ChatMessageComponent } from './components/chat-message/chat-message.component';
+import { WebcamModule } from 'ngx-webcam';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ChatMessageComponent } from './components/chat-message/chat-message.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    WebcamModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
