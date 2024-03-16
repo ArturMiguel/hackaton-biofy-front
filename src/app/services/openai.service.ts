@@ -16,6 +16,6 @@ export class OpenaiService {
   }
 
   sendMessage(message: string) {
-    return this.httpClient.post(`${environment.api}/v1/ia-models/text`, { message }).toPromise();
+    return this.httpClient.post(`${environment.api}/v1/ia-models/texts`, { message }).toPromise();
   }
 }

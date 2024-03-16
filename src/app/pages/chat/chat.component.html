@@ -1,9 +1,12 @@
 <div class="chat-container">
-  <div *ngFor="let message of messageList">
-    <app-chat-message [type]="message.type" [message]="message.message"></app-chat-message>
+  <div id="chat-message-list" class="chat-message-list">
+    <div *ngFor="let message of messageList">
+      <app-chat-message [type]="message.type" [message]="message.message"></app-chat-message>
+    </div>
   </div>
   <div class="flex">
-    <input pInputText placeholder="Enviar mensagem" class="mr-3 w-full">
+    <input pInputText placeholder="Enviar mensagem" class="mr-3 w-full" [(ngModel)]="message" [disabled]="isSubmiting">
+    <button pButton [icon]="isSubmiting ? 'pi pi-spin pi-spinner' : 'pi pi-send'" class="p-button-outlined mr-3" (click)="sendMessage()"></button>
     <button pButton icon="pi pi-camera" class="p-button-outlined mr-3"></button>
     <button pButton icon="pi pi-microphone"></button>
   </div>
