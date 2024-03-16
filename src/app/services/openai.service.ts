@@ -12,6 +12,6 @@ export class OpenaiService {
   ) { }
 
   processImage(base64Image: string) {
-    return this.httpClient.post(`${environment.api}/v1/images`, { image: base64Image }).toPromise();
+    return this.httpClient.post(`${environment.api}/v1/ia-models/images`, { image: base64Image }).toPromise();
   }
 }

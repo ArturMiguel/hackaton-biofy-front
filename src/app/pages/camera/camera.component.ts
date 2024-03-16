@@ -30,7 +30,7 @@ export class CameraComponent implements OnInit {
   }
 
   async processImage() {
-    const response = await this.openaiService.processImage(this.webcamImage!.imageAsDataUrl);
-    alert(response)
+    const response: any = await this.openaiService.processImage(this.webcamImage!.imageAsDataUrl);
+    alert(response!.choices[0].message.content)
   }
 }

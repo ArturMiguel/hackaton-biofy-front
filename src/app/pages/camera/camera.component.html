@@ -3,7 +3,7 @@
     (imageCapture)="imageHandler($event)"
     *ngIf="!webcamImage">
   </webcam>
-  <img *ngIf="webcamImage" height="480" width="640" [src]="webcamImage?.imageAsDataUrl"/>
+  <img *ngIf="webcamImage" height="480" width="640" [src]="webcamImage.imageAsDataUrl"/>
   <div class="flex justify-content-between py-2">
     <button pButton *ngIf="!webcamImage" (click)="takeAPicture()">Tirar Foto</button>
     <button pButton *ngIf="webcamImage"(click)="webcamImage = null">Tirar outra Foto</button>
