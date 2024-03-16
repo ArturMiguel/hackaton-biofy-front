@@ -2,5 +2,8 @@
   <div *ngFor="let message of messageList">
     <app-chat-message [type]="message.type" [message]="message.message"></app-chat-message>
   </div>
+  <div>
+    <input pInputText placeholder="Enviar mensagem">
+  </div>
 </div>
   
