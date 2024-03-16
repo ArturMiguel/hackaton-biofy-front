@@ -12,12 +12,9 @@ import { ChatMessageComponent } from './components/chat-message/chat-message.com
 import { WebcamModule } from 'ngx-webcam';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
-<<<<<<< HEAD
 import { FileUploadModule } from 'primeng/fileupload';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-=======
 import { FormsModule } from '@angular/forms';
->>>>>>> a8477b34e864ce29abdb6f8434390ab20bc8b9dd
 
 @NgModule({
   declarations: [
@@ -35,12 +32,9 @@ import { FormsModule } from '@angular/forms';
     WebcamModule,
     ButtonModule,
     InputTextModule,
-<<<<<<< HEAD
     FileUploadModule,
-    ProgressSpinnerModule
-=======
+    ProgressSpinnerModule,
     FormsModule
->>>>>>> a8477b34e864ce29abdb6f8434390ab20bc8b9dd
   ],
   providers: [],
   bootstrap: [AppComponent]
