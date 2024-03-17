@@ -1,0 +1,17 @@
+@import "../../../styles/colors";
+
+.button-primary-negative {
+  background: $primary-color !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  border-color: $primary-color !important;
+}
+
+.camera-container {
+  ::ng-deep {
+    .webcam-wrapper > video {
+      width: 100% !important;
+      height: 100%!important;
+    }
+  }
+}
