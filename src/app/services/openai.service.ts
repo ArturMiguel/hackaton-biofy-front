@@ -11,8 +11,12 @@ export class OpenaiService {
     private httpClient: HttpClient
   ) { }
 
-  processImage(formData: FormData) {
-    return this.httpClient.post(`${environment.api}/v1/ia-models/images`, formData).toPromise();
+  processImage(formData: FormData, thread: string) {
+    if (thread) {
+      return this.httpClient.post(`${environment.api}/v1/ia-models/images?thread=${thread}`, formData).toPromise();
+    } else {
+      return this.httpClient.post(`${environment.api}/v1/ia-models/images`, formData).toPromise();
+    }
   }
 
   sendMessage(message: string, thread: string) {

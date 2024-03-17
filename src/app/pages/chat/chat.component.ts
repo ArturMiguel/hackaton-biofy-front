@@ -152,9 +152,10 @@ export class ChatComponent implements OnInit {
     formData.append("file", file);
     this.isSubmiting = true;
 
-    this.openService.processImage(formData).then((response: any) => {
+    this.openService.processImage(formData, this.thread).then((response: any) => {
+      this.thread = response.thread;
       this.messageList.push({
-        message: response!.choices[0].message.content,
+        message: response.content,
         mediaType: EMediaType.TEXT,
         thread: "",
         type: ETypeMessage.BOT
