@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MenuItem } from 'primeng/api';
-import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogService } from 'primeng/dynamicdialog';
 import { CameraDeviceComponent } from 'src/app/components/camera-device/camera-device.component';
 import SweetAlert from 'src/app/libs/SweetAlert';
 import { OpenaiService } from 'src/app/services/openai.service';
@@ -64,13 +64,15 @@ export class ChatComponent implements OnInit {
   public audioRecorder: any = null;
 
   @ViewChild('inputFile') inputFile: ElementRef | undefined;
+  @ViewChild("inputMsg") inputMsg: ElementRef | undefined;
 
   constructor(
     private openService: OpenaiService,
     private cdr: ChangeDetectorRef,
     private dialogService: DialogService,
     private sanitizer: DomSanitizer
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }
@@ -173,34 +175,34 @@ export class ChatComponent implements OnInit {
 
   public async stopAudioRecording() {
     const { audioBlob } = await this.audioRecorder.stop();
-      try {
-        // blob e file são praticamente a mesma coisa, o blob não tem as propriedades "lastModifiedDate" e "name"
-        audioBlob.lastModifiedDate = new Date();
-        audioBlob.name = "audio.opus";
+    try {
+      // blob e file são praticamente a mesma coisa, o blob não tem as propriedades "lastModifiedDate" e "name"
+      audioBlob.lastModifiedDate = new Date();
+      audioBlob.name = "audio.opus";
 
-        this.isTranscriptingAudio = true;
+      this.isTranscriptingAudio = true;
 
-        this.openService.uploadAudio(audioBlob, this.thread).then(async (response: any) => {
-          this.messageList.push(response.transcription);
-          this.thread = response.threadId;
+      this.openService.uploadAudio(audioBlob, this.thread).then(async (response: any) => {
+        this.messageList.push(response.transcription);
+        this.thread = response.threadId;
 
-          this.isTranscriptingAudio = false;
-          this.isSubmiting = true;
+        this.isTranscriptingAudio = false;
+        this.isSubmiting = true;
 
-          try {
-            const res: any = await this.openService.sendMessage(response.transcription.message, this.thread);
-            this.messageList.push(res.lastMessage);
-          } catch (error: any) {
-            SweetAlert.error("", error.error.message);  
-          }
-        }).catch(err => {
-          SweetAlert.error("", err.error.message);
-        }).finally(() => {
-          this.isSubmiting = false;
-        });
-      } catch (err: any) {
+        try {
+          const res: any = await this.openService.sendMessage(response.transcription.message, this.thread);
+          this.messageList.push(res.lastMessage);
+        } catch (error: any) {
+          SweetAlert.error("", error.error.message);
+        }
+      }).catch(err => {
         SweetAlert.error("", err.error.message);
-      }
+      }).finally(() => {
+        this.isSubmiting = false;
+      });
+    } catch (err: any) {
+      SweetAlert.error("", err.error.message);
+    }
   }
 
   public recordAudio(): any {
