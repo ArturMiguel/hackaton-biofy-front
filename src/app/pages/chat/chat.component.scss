@@ -26,14 +26,52 @@
   color: $primary-color !important
 }
 
-.button-primary-negative {
-  background: $primary-color !important;
-  color: #fff !important;
-  box-shadow: none !important;
-  border-color: $primary-color !important;
+.start-record-button {
+  background-color: $primary-color !important;
+  border: none !important;
+}
+
+.stop-record-button {
+  background: rgb(231, 74, 74) !important;
+  border: none !important
 }
 
 .writing-text {
   opacity: 0.8;
   font-style: italic;
+}
+
+.recording {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: red;
+  border-radius: 50%;
+  cursor: pointer;
+  color: red;
+  animation: recording-animation 2.5s infinite;
+}
+
+@keyframes recording-animation {
+  0% {
+    background-color: red;
+    ;
+  }
+
+  25% {
+    background-color: #fff;
+  }
+
+  50% {
+    background-color: red;
+    ;
+  }
+
+  75% {
+    background-color: #fff;
+  }
+
+  100% {
+    background-color: red;
+    ;
+  }
 }

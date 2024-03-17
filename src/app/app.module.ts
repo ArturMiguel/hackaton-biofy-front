@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { LoginComponent } from './pages/login/login.component';
 import { CameraComponent } from './pages/camera/camera.component';
 import { ChatComponent } from './pages/chat/chat.component';
 import { ChatMessageComponent } from './components/chat-message/chat-message.component';
@@ -18,14 +17,13 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { FormsModule } from '@angular/forms';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { CameraDeviceComponent } from './components/camera-device/camera-device.component';
-
+import { MenuModule } from 'primeng/menu';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    LoginComponent,
     CameraComponent,
     ChatComponent,
     ChatMessageComponent,
@@ -43,6 +41,7 @@ import { CameraDeviceComponent } from './components/camera-device/camera-device.
     ProgressSpinnerModule,
     FormsModule,
     DynamicDialogModule,
+    MenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

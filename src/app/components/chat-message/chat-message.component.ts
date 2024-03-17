@@ -10,6 +10,7 @@ export class ChatMessageComponent implements OnInit {
   @Input() type: string = "";
   @Input() message: string = "";
   @Input() mediaType: string = "";
+  @Input() thread: string = "";
 
   constructor() { }
 
