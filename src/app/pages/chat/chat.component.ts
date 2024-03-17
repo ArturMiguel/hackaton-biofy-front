@@ -71,7 +71,8 @@ export class ChatComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private dialogService: DialogService,
     private sanitizer: DomSanitizer
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
   }

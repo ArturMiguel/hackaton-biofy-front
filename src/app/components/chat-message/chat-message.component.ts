@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { EMediaType } from 'src/app/pages/chat/chat.component';
 
 @Component({
   selector: 'app-chat-message',

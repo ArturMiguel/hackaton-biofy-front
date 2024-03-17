@@ -16,14 +16,15 @@
       </div>
       <input autofocus id="inputMsg" pInputText placeholder="Enviar mensagem" class="mr-3 w-full" [(ngModel)]="message" [disabled]="isSubmiting" (keyup.enter)="sendMessage()" *ngIf="!isRecordingAudio">
 
-      <button pButton [icon]="isSubmiting ? 'pi pi-spin pi-spinner' : 'pi pi-send'" class="p-button-outlined mr-3 button-primary" (click)="sendMessage()" [disabled]="isSubmiting || isRecordingAudio || isTranscriptingAudio"></button>
+      <button pButton [icon]="isSubmiting ? 'pi pi-spin pi-spinner' : 'pi pi-send'" class="submit-button p-button-outlined mr-3 button-primary" (click)="sendMessage()" [disabled]="isSubmiting || isRecordingAudio || isTranscriptingAudio" *ngIf="message.length"></button>
+      
+      <button pButton icon="pi pi-microphone" class="start-record-button mr-3" (click)="startAudioRecording()" *ngIf="!isRecordingAudio && !message.length" [disabled]="isSubmiting || isTranscriptingAudio"></button>
+      <button pButton icon="pi pi-microphone" class="stop-record-button mr-3" (click)="stopAudioRecording()" *ngIf="isRecordingAudio && !message.length" [disabled]="isSubmiting || isTranscriptingAudio"></button>
 
-      <button pButton icon="pi pi-camera" (click)="menu.toggle($event)" class="p-button-outlined mr-3 button-primary" [disabled]="isSubmiting || isRecordingAudio || isTranscriptingAudio"></button>
+      <button pButton icon="pi pi-camera" (click)="menu.toggle($event)" class="p-button-outlined button-primary" [disabled]="isSubmiting || isRecordingAudio || isTranscriptingAudio"></button>
       <p-menu #menu [popup]="true" [model]="items"></p-menu>
       <input #inputFile med class="hidden" type="file" accept="image/png, image/gif, image/jpeg, image/jpg, image/webp" (change)="handleInputFile($event)" />
 
-      <button pButton icon="pi pi-microphone" class="start-record-button" (click)="startAudioRecording()" *ngIf="!isRecordingAudio" [disabled]="isSubmiting || isTranscriptingAudio"></button>
-      <button pButton icon="pi pi-microphone" class="stop-record-button" (click)="stopAudioRecording()" *ngIf="isRecordingAudio" [disabled]="isSubmiting || isTranscriptingAudio"></button>
     </div>
   </div>
 </div>
