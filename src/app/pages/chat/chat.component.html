@@ -1,4 +1,8 @@
 <div class="chat-container">
+  <div>
+    <app-header></app-header>
+  </div>
+
   <div id="chat-message-list" class="chat-message-list">
     <div *ngFor="let message of messageList">
       <app-chat-message [type]="message.type" [message]="message.message" [mediaType]="message.mediaType"></app-chat-message>

@@ -16,6 +16,6 @@ export class WeatherService {
       latitude: latitude,
       longitude: lontitude
     })
-    return this.http.get(`${environment.api}/api/v1/weathers?${params.toString()}`).toPromise();
+    return this.http.get(`${environment.api}/v1/weathers?${params.toString()}`).toPromise();
   }
 }
