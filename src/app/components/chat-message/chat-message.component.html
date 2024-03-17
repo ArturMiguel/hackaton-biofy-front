@@ -1,5 +1,6 @@
 <div class="chat-message-area">
   <div [ngClass]="{ 'USER': 'chat-message', 'BOT': 'chat-message-bot' }[type]">
-    <div [innerHTML]="message"></div>
+    <div *ngIf="!mediaType || mediaType == 'TEXT'" [innerHTML]="message"></div>
+    <img *ngIf="mediaType == 'IMAGE'" style="width: 100%; object-fit: contain;" [src]="message"/>
   </div>
 </div>

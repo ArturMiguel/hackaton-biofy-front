@@ -1,7 +1,7 @@
 <div class="chat-container">
   <div id="chat-message-list" class="chat-message-list">
     <div *ngFor="let message of messageList">
-      <app-chat-message [type]="message.type" [message]="message.message"></app-chat-message>
+      <app-chat-message [type]="message.type" [message]="message.message" [mediaType]="message.mediaType"></app-chat-message>
     </div>
   </div>
 
@@ -17,7 +17,9 @@
 
     <button pButton [icon]="isSubmiting ? 'pi pi-spin pi-spinner' : 'pi pi-send'" class="p-button-outlined mr-3 button-primary" (click)="sendMessage()" [disabled]="isSubmiting || isRecordingAudio || isTranscriptingAudio"></button>
 
-    <button pButton icon="pi pi-camera" class="p-button-outlined mr-3 button-primary" [disabled]="isSubmiting || isRecordingAudio || isTranscriptingAudio"></button>
+    <button pButton icon="pi pi-camera" (click)="menu.toggle($event)" class="p-button-outlined mr-3 button-primary" [disabled]="isSubmiting || isRecordingAudio || isTranscriptingAudio"></button>
+    <p-menu #menu [popup]="true" [model]="items"></p-menu>
+    <input #inputFile med class="hidden" type="file" accept="image/png, image/gif, image/jpeg, image/jpg, image/webp" (change)="handleInputFile($event)" />
 
     <button pButton icon="pi pi-microphone" class="start-record-button" (click)="startAudioRecording()" *ngIf="!isRecordingAudio" [disabled]="isSubmiting || isTranscriptingAudio"></button>
     <button pButton icon="pi pi-microphone" class="stop-record-button" (click)="stopAudioRecording()" *ngIf="isRecordingAudio" [disabled]="isSubmiting || isTranscriptingAudio"></button>

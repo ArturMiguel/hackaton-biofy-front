@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +15,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { FormsModule } from '@angular/forms';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { CameraDeviceComponent } from './components/camera-device/camera-device.component';
+import { MenuModule } from 'primeng/menu';
+
 
 @NgModule({
   declarations: [
@@ -22,9 +27,11 @@ import { FormsModule } from '@angular/forms';
     CameraComponent,
     ChatComponent,
     ChatMessageComponent,
+    CameraDeviceComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     WebcamModule,
@@ -32,7 +39,9 @@ import { FormsModule } from '@angular/forms';
     InputTextModule,
     FileUploadModule,
     ProgressSpinnerModule,
-    FormsModule
+    FormsModule,
+    DynamicDialogModule,
+    MenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

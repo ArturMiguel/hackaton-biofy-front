@@ -1,32 +1,75 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MenuItem } from 'primeng/api';
+import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
+import { CameraDeviceComponent } from 'src/app/components/camera-device/camera-device.component';
 import SweetAlert from 'src/app/libs/SweetAlert';
 import { OpenaiService } from 'src/app/services/openai.service';
+
+export enum EMediaType {
+  TEXT = "TEXT",
+  IMAGE = "IMAGE"
+}
+
+export enum ETypeMessage {
+  USER = "USER",
+  BOT = "BOT"
+}
+
+export interface IMessage {
+  message: any;
+  type: ETypeMessage;
+  thread: string,
+  mediaType: EMediaType
+}
 
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss']
+  styleUrls: ['./chat.component.scss'],
+  providers: [DialogService]
 })
 export class ChatComponent implements OnInit {
-  public messageList = [
+  public messageList: IMessage[] = [
     {
       "message": "Olá, bem-vindo(a) ao IA.GRO. Em que posso ajudar?",
-      "type": "BOT",
-      "thread": ""
+      "type": ETypeMessage.BOT,
+      "thread": "",
+      "mediaType": EMediaType.TEXT
     },
   ]
   public message = "";
   public thread = "";
   public isSubmiting = false;
+  public items: MenuItem[] = [
+    {
+      label: 'Câmera',
+      icon: 'pi pi-camera',
+      command: () => {
+        this.openCameraDevice()
+      }
+    },
+    {
+      label: 'Galeria',
+      icon: 'pi pi-th-large',
+      command: () => {
+        this.inputFile!.nativeElement.click();
+      }
+    }
+  ]
 
   // Áudio
   public isRecordingAudio = false;
   public isTranscriptingAudio = false;
   public audioRecorder: any = null;
 
+  @ViewChild('inputFile') inputFile: ElementRef | undefined;
+
   constructor(
     private openService: OpenaiService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private dialogService: DialogService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
@@ -37,7 +80,8 @@ export class ChatComponent implements OnInit {
       this.messageList.push({
         message: this.message,
         thread: this.thread,
-        type: "USER"
+        type: ETypeMessage.USER,
+        mediaType: EMediaType.TEXT
       })
       this.scrollChatToEnd();
 
@@ -61,9 +105,64 @@ export class ChatComponent implements OnInit {
   }
 
   private scrollChatToEnd() {
-    const elment: any = document.getElementById("chat-message-list");
-    elment.scroll({ top: elment.scrollHeight, behavior: "smooth" });
-    this.cdr.detectChanges();
+    setTimeout(() => {
+      const elment: any = document.getElementById("chat-message-list");
+      elment.scroll({ top: elment.scrollHeight, behavior: "smooth" });
+      this.cdr.detectChanges();
+    }, 200)
+  }
+
+  public openCameraDevice() {
+    const ref = this.dialogService.open(CameraDeviceComponent, {
+      height: '90vh',
+      width: '80%'
+    })
+
+    ref.onClose.subscribe((event: { file: File, url: string }) => {
+      if (event) {
+        this.handleProcessingImage(event.file, event.url)
+      }
+    })
+  }
+
+  private handleProcessingImage(file: File, url: string) {
+    this.messageList.push({
+      message: url,
+      thread: this.thread,
+      mediaType: EMediaType.IMAGE,
+      type: ETypeMessage.USER
+    })
+    this.scrollChatToEnd();
+    this.processImage(file);
+  }
+
+  handleInputFile(event: any) {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      // Sanitizar a URL para torná-la segura
+      const url: any = this.sanitizer.bypassSecurityTrustUrl(e.target.result as string);
+      this.handleProcessingImage(file, url)
+    };
+    reader.readAsDataURL(file);
+  }
+
+  private async processImage(file: File) {
+    const formData = new FormData();
+    formData.append("file", file);
+    this.isSubmiting = true;
+
+    this.openService.processImage(formData).then((response: any) => {
+      this.messageList.push({
+        message: response!.choices[0].message.content,
+        mediaType: EMediaType.TEXT,
+        thread: "",
+        type: ETypeMessage.BOT
+      })
+      this.scrollChatToEnd();
+    }).finally(() => {
+      this.isSubmiting = false;
+    });
   }
 
   public async startAudioRecording() {
