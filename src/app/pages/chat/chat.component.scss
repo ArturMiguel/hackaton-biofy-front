@@ -2,10 +2,10 @@
 
 .chat-container {
   padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  height: 90vh;
-  justify-content: space-between;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 1fr auto;
 
   ::ng-deep {
     .p-inputtext {
@@ -16,7 +16,6 @@
 }
 
 .chat-message-list {
-  height: 75vh;
   overflow-y: auto;
   overflow-x: hidden;
 }

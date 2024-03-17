@@ -5,24 +5,26 @@
     </div>
   </div>
 
-  <div *ngIf="isSubmiting" class="writing-text">IA.GRO está digitando...</div>
-  <div *ngIf="isTranscriptingAudio" class="writing-text">IA.GRO está transcrevendo o áudio...</div>
+  <div>
+    <div *ngIf="isSubmiting" class="writing-text">IA.GRO está digitando...</div>
+    <div *ngIf="isTranscriptingAudio" class="writing-text">IA.GRO está transcrevendo o áudio...</div>
 
-  <div class="flex">
-    <div *ngIf="isRecordingAudio" class="flex align-items-center w-full">
-      <div class="recording mx-2">.</div>
-      <span>Gravando áudio...</span>
+    <div class="flex">
+      <div *ngIf="isRecordingAudio" class="flex align-items-center w-full">
+        <div class="recording mx-2">.</div>
+        <span>Gravando áudio...</span>
+      </div>
+      <input autofocus id="inputMsg" pInputText placeholder="Enviar mensagem" class="mr-3 w-full" [(ngModel)]="message" [disabled]="isSubmiting" (keyup.enter)="sendMessage()" *ngIf="!isRecordingAudio">
+
+      <button pButton [icon]="isSubmiting ? 'pi pi-spin pi-spinner' : 'pi pi-send'" class="p-button-outlined mr-3 button-primary" (click)="sendMessage()" [disabled]="isSubmiting || isRecordingAudio || isTranscriptingAudio"></button>
+
+      <button pButton icon="pi pi-camera" (click)="menu.toggle($event)" class="p-button-outlined mr-3 button-primary" [disabled]="isSubmiting || isRecordingAudio || isTranscriptingAudio"></button>
+      <p-menu #menu [popup]="true" [model]="items"></p-menu>
+      <input #inputFile med class="hidden" type="file" accept="image/png, image/gif, image/jpeg, image/jpg, image/webp" (change)="handleInputFile($event)" />
+
+      <button pButton icon="pi pi-microphone" class="start-record-button" (click)="startAudioRecording()" *ngIf="!isRecordingAudio" [disabled]="isSubmiting || isTranscriptingAudio"></button>
+      <button pButton icon="pi pi-microphone" class="stop-record-button" (click)="stopAudioRecording()" *ngIf="isRecordingAudio" [disabled]="isSubmiting || isTranscriptingAudio"></button>
     </div>
-    <input pInputText placeholder="Enviar mensagem" class="mr-3 w-full" [(ngModel)]="message" [disabled]="isSubmiting" (keyup.enter)="sendMessage()" *ngIf="!isRecordingAudio">
-
-    <button pButton [icon]="isSubmiting ? 'pi pi-spin pi-spinner' : 'pi pi-send'" class="p-button-outlined mr-3 button-primary" (click)="sendMessage()" [disabled]="isSubmiting || isRecordingAudio || isTranscriptingAudio"></button>
-
-    <button pButton icon="pi pi-camera" (click)="menu.toggle($event)" class="p-button-outlined mr-3 button-primary" [disabled]="isSubmiting || isRecordingAudio || isTranscriptingAudio"></button>
-    <p-menu #menu [popup]="true" [model]="items"></p-menu>
-    <input #inputFile med class="hidden" type="file" accept="image/png, image/gif, image/jpeg, image/jpg, image/webp" (change)="handleInputFile($event)" />
-
-    <button pButton icon="pi pi-microphone" class="start-record-button" (click)="startAudioRecording()" *ngIf="!isRecordingAudio" [disabled]="isSubmiting || isTranscriptingAudio"></button>
-    <button pButton icon="pi pi-microphone" class="stop-record-button" (click)="stopAudioRecording()" *ngIf="isRecordingAudio" [disabled]="isSubmiting || isTranscriptingAudio"></button>
   </div>
 </div>
   
