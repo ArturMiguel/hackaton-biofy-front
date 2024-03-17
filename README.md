@@ -7,7 +7,7 @@ Solução desenvolvida para o [Hackton da Biofy 2024](https://www.sympla.com.br/
 Tecnologias utilizadas para desenvolvimento:
 
 - Front-end
-  - Angular
+  - Angular compatível com Node.js 16
   - PrimeNG + PrimeFlex
 
 - Back-end:
@@ -16,15 +16,16 @@ Tecnologias utilizadas para desenvolvimento:
 
 ### Executar projeto localmente
 
-Requisitos:
-
-- Instalado Node.js v16
-- Instalada a CLI do Angular
-
 1) Clone o projeto e instale as dependências:
 
 ```
 npm ci
 ```
 
-2) Execute o projeto 
+2) Execute o projeto digitando `ng serve` no terminal.
+
+### Executar projeto com Docker
+
+1) Compile o container com docker compose: `docker compose build`
+
+2) Execute o container: `docker compose up`
