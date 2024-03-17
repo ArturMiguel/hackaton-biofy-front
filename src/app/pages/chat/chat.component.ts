@@ -30,14 +30,7 @@ export interface IMessage {
   providers: [DialogService]
 })
 export class ChatComponent implements OnInit {
-  public messageList: IMessage[] = [
-    {
-      "message": "Olá, bem-vindo(a) ao IA.GRO. Em que posso ajudar?",
-      "type": ETypeMessage.BOT,
-      "thread": "",
-      "mediaType": EMediaType.TEXT
-    },
-  ]
+  public messageList: IMessage[] = [];
   public message = "";
   public thread = "";
   public isSubmiting = false;

@@ -21,6 +21,23 @@
   overflow-x: hidden;
 }
 
+.welcome-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h2 {
+    font-weight: 700;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
 .button-primary {
   border-color: $primary-color !important;
   color: $primary-color !important
