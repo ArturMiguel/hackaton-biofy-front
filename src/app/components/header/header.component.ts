@@ -26,6 +26,7 @@ export class HeaderComponent implements OnInit {
         this.weatherInfo = await this.weatherService.getWeather(latitude.toString(), longitude.toString());
       } catch (error: any) {
         this.weatherError = error.message;
+        console.log(error)
       }
     }, (error) => {
       this.weatherError = error.message;

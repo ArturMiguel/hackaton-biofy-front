@@ -1,27 +1,30 @@
-# HackatonBiofyFront
+# IA.GRO - Hackaton Biofy
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.4.
+Solução desenvolvida para o [Hackton da Biofy 2024](https://www.sympla.com.br/evento/hackathon-biofy/2346682).
 
-## Development server
+"IA.GRO" é um assistente que utiliza inteligência artificial para responder dúvidas sobre agronegócio com especialização em identificação de problemas de pragas através de texto, áudio e imagem.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Tecnologias utilizadas para desenvolvimento:
 
-## Code scaffolding
+- Front-end
+  - Angular
+  - PrimeNG + PrimeFlex
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Back-end:
+  - https://github.com/ArturMiguel/hackaton-biofy-back
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Executar projeto localmente
 
-## Running unit tests
+Requisitos:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Instalado Node.js v16
+- Instalada a CLI do Angular
 
-## Running end-to-end tests
+1) Clone o projeto e instale as dependências:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```
+npm ci
+```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+2) Execute o projeto 
