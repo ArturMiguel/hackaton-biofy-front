@@ -1,3 +1,18 @@
-<header>
-  <span></span>
+<header class="header">
+  <div class="flex align-items-center cursor-pointer" (click)="newChat()">
+    <i class="pi pi-plus mr-2"></i>
+    <span>Novo Chat</span>
+  </div>
+  <div class="flex align-items-center">
+    <div class="weather-card">
+      <div *ngIf="weatherInfo">
+        <span >{{ weatherInfo.temperature }}°C</span> 
+        <img [src]="'../../../assets/icons/hg-brasil-conditions-slugs/' + weatherInfo.condition_image + '.svg'"> 
+        <span>{{ weatherInfo.condition }}</span>
+      </div>
+      <span *ngIf="!weatherInfo">
+        <span *ngIf="weatherError">Clima indisponível</span>
+      </span>
+    </div>
+  </div>
 </header>
